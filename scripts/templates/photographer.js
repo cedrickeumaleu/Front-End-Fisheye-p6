@@ -20,9 +20,11 @@ function photographerTemplate(data) {
         
         const taglineElement = document.createElement('p')
         taglineElement.textContent = tagline
+        taglineElement.style.color = 'black'
 
         const priceElement = document.createElement('p')
         priceElement.textContent = `${price}€/jour`
+        priceElement.style.color = 'gray'
         
         // const de création du lien qui dirige vers l'id ou page de chaque photographe
         const a = document.createElement('a')

@@ -3,6 +3,9 @@
 }
 
 .photograph-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
@@ -21,6 +24,7 @@
     cursor: pointer;
 }
 
+/*style css modal de contact*/
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
