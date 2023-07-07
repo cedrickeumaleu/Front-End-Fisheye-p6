@@ -15,6 +15,7 @@ function photographerTemplate(data) {
         // variable pour recupérer le nom du photographe
         const h2 = document.createElement('h2');
         h2.textContent = name;
+        
         // variable pour recupérer le pays
         const p = document.createElement('p')
         p.textContent = `${city},${country}`
@@ -43,31 +44,40 @@ function photographerTemplate(data) {
 
     }
     
-    function getUserHeader(){
-       
-        const article = document.createElement('article');
-
-        // variable pour recupérer le nom du photographe
-        const namePhotographer = document.createElement('h2');
-        namePhotographer.textContent = name;
-        // variable pour recupérer le pays
-        const pays = document.createElement('p')
-        pays.textContent = `${city},${country}`
+    // affichage de la page photographer
+    function getPageDOM(){
         
-        const taglineElement = document.createElement('p')
+        const articlePage = document.querySelector('.photographe-header')
+
+        const img = document.createElement('img');
+        img.setAttribute("src", picture)
+
+         // variable pour recupérer le nom du photographe
+         const h2 = document.createElement('h2');
+         h2.textContent = name;
+         h2.style.color = '#D3573C'
+         // variable pour recupérer le pays
+         const p = document.createElement('p')
+         p.textContent = `${city}, ${country}`
+         p.style.color = '#901C1C'
+
+         const taglineElement = document.createElement('p')
         taglineElement.textContent = tagline
         taglineElement.style.color = 'black'
+        
+        //création d'une div et lui passer les élements
+        const carder = document.createElement('div')
+        carder.appendChild(h2)
+        carder.appendChild(p)
+        carder.appendChild(taglineElement)
 
+        articlePage.appendChild(img)//posissionné l'img en dernière position dans le blog
+        articlePage.prepend(carder) //posissionné le contenu de carder en avant dans le blog
 
-
-        article.appendChild(namePhotographer);
-        article.appendChild(pays)
-        article.appendChild(taglineElement)
-        return(article)
-
+        return(articlePage)
     }
 
-    return { name, picture, getUserCardDOM, getUserHeader }
+    return { name, picture, getUserCardDOM, getPageDOM }
 
     
 }

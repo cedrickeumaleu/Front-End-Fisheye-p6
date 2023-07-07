@@ -1,32 +1,51 @@
 //Mettre le code JavaScript lié à la page photographer.htmt
-
-async function getPhotographers() {  
+// resultat: tout le fichier json
+async function getPagePhotographers() {  
+    
     // récupération du fichier json avec la method fetch
-   const photographers = await fetch('data/photographers.json')
-   if (photographers.ok === true){
-
+   const photographersPage = await fetch('data/photographers.json')
+   if (photographersPage.ok === true){
      // et bien retourner le tableau photographers seulement une fois récupéré
-    return photographers.json();
+    return photographersPage.json();
+
    }
    throw new Error('impossible de contacter le serveur')
       
 }
 
-async function displayData(photographers) {
-    // recupération de la section photographers dans le html
-    const photographersHeader = document.querySelector(".photograph-header");
+//resultat:en fontion d'un id, renvoie un objet avec les info du photographe
+async function getPhotographerById(id){
+    const photographersData = await getPagePhotographers()
+    
+    let findPhotographer;
+    photographersData.photographers.forEach((photographer) =>{
+        
+       if (photographer.id == id){
+        findPhotographer = photographer
+    
+       }
+    })
+    return findPhotographer
+}
+async function init(){
+    const params = (new URL(document.location)).searchParams;
+    const id = params.get('id'); 
+   const photographer =  await getPhotographerById(id)
+   displayData(photographer)
+   
+}
+init()
 
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersHeader.appendChild(userCardDOM);
-    });
+
+// //récupération du travail de chaque photographes
+async function displayData(photographer) {
+    // recupération du header photographers.html
+
+    const photographerModel = photographerTemplate(photographer);
+          photographerModel.getPageDOM();
+    
+   
 }
 
-async function init() {
-    // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
-}
 
-init();
+
