@@ -1,10 +1,12 @@
 function photographerTemplate(data) {
-    const { name, portrait, city,country, tagline, price, id } = data;
+    const { name, portrait, city,country, tagline, price, id} = data;
     
     //const de récupération de la photo de profil de chaque photographe
     const picture = `assets/photographers/${portrait}`;
+    // const de récupération de l'image média
+    
 
-    function getUserCardDOM() {
+    function getUserCardDOM() { //affichage du profil de chaque photographe
     
         // création du champ article pour inséré les élements provenant du json
         const article = document.createElement('article');
@@ -47,8 +49,10 @@ function photographerTemplate(data) {
     // affichage de la page photographer
     function getPageDOM(){
         
+        // récupération de section header
         const articlePage = document.querySelector('.photographe-header')
-
+        
+        
         const img = document.createElement('img');
         img.setAttribute("src", picture)
 
@@ -73,11 +77,16 @@ function photographerTemplate(data) {
 
         articlePage.appendChild(img)//posissionné l'img en dernière position dans le blog
         articlePage.prepend(carder) //posissionné le contenu de carder en avant dans le blog
-
-        return(articlePage)
+        
+        const main = document.getElementById('main') //div pour contenir toute la page
+        main.appendChild(articlePage)
+        
+        
+        return(main)
     }
 
-    return { name, picture, getUserCardDOM, getPageDOM }
+
+    return { name, picture, getUserCardDOM, getPageDOM, }
 
     
 }

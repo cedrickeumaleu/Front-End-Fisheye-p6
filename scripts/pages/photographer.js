@@ -43,17 +43,19 @@ async function displayData(photographer) {
     const photographerModel = photographerTemplate(photographer);
           photographerModel.getPageDOM(); // affichage de la modele photographer
 
-    const media = getMediasByPhotographerId(photographer.id)         
-    const mediaModel = mediaTemplate(media, photographer.name)
-          mediaModel.getImageDOM(); // affichage de la modale media
-          
-    let namePhotographer = []; 
-        photographersData.media.forEach((m) =>{
-        namePhotographer.push(mediaTemplate(m, photographer.name))
-       
+    const media = await getMediasByPhotographerId(photographer.id)
+           
+    
+    const photographerName = photographer.name.split(" ")[0]//methode pour séparer le nom du prenom 
+    const section = document.createElement("section")
+    const main = document.querySelector('main') 
+    media.forEach(media => {
+        const mediaModel = mediaTemplate(media, photographerName)
+        const imageSection = mediaModel.getImageDOM();
+        section.appendChild(imageSection)
+        main.appendChild(section)
     })
-    return namePhotographer;
-
+       
 }
 
 
@@ -65,6 +67,7 @@ async function getMediasByPhotographerId(photographerId){
     photographersData.media.forEach((media) =>{
         
        if (media.photographerId == photographerId){
+        
         findMedias.push(media)
         
        }
@@ -72,16 +75,7 @@ async function getMediasByPhotographerId(photographerId){
     return findMedias
 }
 
-async function getMediasByPhotographerId(){
-    const photographersData = await getPagePhotographers()
 
-    let imageMedias = [];
-    photographersData.media.forEach((image) =>{
-        imageMedias.push(mediaTemplate(image))
-    
-    })
-    return imageMedias;
-}
 
 
 
