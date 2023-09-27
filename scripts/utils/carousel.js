@@ -1,19 +1,19 @@
 //DOM Elements
-const modalCarousel = document.createElement("div");
-const openCarousel = document.createElement("div")
-const closeCarousel = document.createElement("div")
-const body = document.querySelector("body")
 
-//ouverture de la modal
-openCarousel.forEach((btn) => btn.addEventListener("click", displayModal));
-function displayModal() {
-	modalCarousel.style.display = "block";
-    body.classList.add('modalOpen')
-}
+const modalLightbox = document.getElementById('lightbox')
+const openCarousel = document.querySelectorAll('.media-photographer')
+const closeCarousel = document.getElementById('closeDialog')
 
-//fermeture de la modal
-closeCarousel.forEach((btn) => btn.addEventListener("click", closeModal))
-function closeModal() {
-    modalCarousel.style.display = "none";
-    body.classList.remove('modalOpen')
-}
+// //ouverture de la modale
+// openCarousel.addEventListener("click", () => {
+//     modalLightbox.show()
+// })  
+	     
+//fermeture de la modale
+closeCarousel.addEventListener("click", () => {
+    modalLightbox.style.display = "none";
+}) 
+
+// traitement du lightbox carousel
+
+

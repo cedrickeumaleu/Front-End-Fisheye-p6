@@ -2,6 +2,11 @@
     display: none;
 }
 
+main{
+    position: relative;
+}
+
+/*** en tête page photographer **/
 .photographe-header {
     display: flex;
     justify-content:space-around;
@@ -29,10 +34,24 @@
     margin-top: 0;
 }
 
-/* .photographe-header p{
-    font-size: 32px;
-} */
+/* section de trie ***/
+.contene-trie{
+    margin: 0 100px;
+    position: absolute;
+    margin-top: 305px;
+}
 
+.contene-trie select{
+    border: none;
+    background-color: #901C1C;
+    color: white;
+    width: 110px;
+    height: 40px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+/** button de contact **/
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -62,7 +81,7 @@
     animation-duration: 2s;
 }
 
-/* modalcontact*/
+/* modale de contact*/
 #contact_modal{
     background-color: white;
     position: fixed;
@@ -135,12 +154,13 @@ form textarea{
     border-radius: 5px;
 }
 
+/* section phptographer */
  section{
-    margin: 0 100px;
+    margin: 30px 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
  article{
@@ -152,26 +172,115 @@ form textarea{
 
 section img{
     width: 100%;
-    height: 352px;
+    height: 393px;
     object-fit: cover;
+    cursor: pointer;
 }
 section video{
     width: 100%;
-    height: 352px;
+    height: 393px;
 }
 
-section article span{
+section article div{
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-section div{
+section article{
     width: 30%;
     display: flex;
     flex-direction: column;
     margin-top: 46px;
+    position: relative;
+}
+
+article .fa-solid.fa-heart{
+    position:absolute;
+    right: 25px;
     cursor: pointer;
 }
 
+/* css lightbox carousel */
+#lightbox{ 
+    display: none;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+   
+}
+#lightbox .media-photographer i{
+    display: none;
+}
+#lightbox .media-photographer span{
+    display: none;
+}
+
+#lightbox header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 95%;
+    margin: auto;
+}
+
+#lightbox #container{
+    width: 35%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: -100px;
+    height: 667px;
+}
+
+/* fermeture lightbox */
+header .fa-solid.fa-xmark{
+    height: 45px;
+    cursor: pointer;
+    color: #901C1C;
+    font-size: 45px;
+    
+}
+
+/* chevron carousel */
+.fa-solid.fa-chevron-left{
+    position: absolute;
+    cursor: pointer;
+    top: 273px;
+    left: 260px;
+    color: #901C1C;
+    font-size: 45px;
+
+}
+.fa-solid.fa-chevron-right{
+    position: absolute;
+    cursor: pointer;
+    top: 273px;
+    right: 260px;
+    color: #901C1C;
+    font-size: 45px;
+}
+
+/* bar de statistique */
+.bar-stat{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #DB8876;
+    width: 25%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    right: 40px;
+    border-radius: 5px;
+    z-index: 1;
+    padding: 0 10px;
+}

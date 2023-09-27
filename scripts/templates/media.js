@@ -1,5 +1,5 @@
-function mediaTemplate(data, namePhotographer){
-    const { id, photographerId, image, likes, title, video} = data;
+function mediaTemplate(data, namePhotographer, index){
+    const { id, photographerId, image, likes, title, video, date, price} = data;
     
     //  resultat : retoune les image du média
     function getImageDOM(){
@@ -8,31 +8,39 @@ function mediaTemplate(data, namePhotographer){
 
           //cration d'un carder pour présenté les media
         const carderMedia = document.createElement('article')
-        const carousel = document.createElement('div')
+        carderMedia.setAttribute('data-id', index)
+        carderMedia.setAttribute('media-id', id)
+
         //les medias images
         if (image){
             const imageMedia = `../../assets/images/${namePhotographer}/${image}`; // image des medias
             
             const images = document.createElement('img');
             images.setAttribute("src", imageMedia)
+            carderMedia.className = "media-photographer"
+            images.className = "photo"
     
             const titre = document.createElement('p')
             titre.textContent = title
             titre.style.color = '#901C1C'
+            
 
             const icone = document.createElement('i')
             icone.className = "fa-solid fa-heart"
-            icone.textContent = likes
             icone.style.color = '#901C1C'
-           
-
-            const footerCard = document.createElement('span')
+            
+            const nuberLikes = document.createElement('span')
+            nuberLikes.textContent = likes
+            nuberLikes.style.color = '#901C1C'
+        
+            const footerCard = document.createElement('div')
             footerCard.appendChild(titre)
             footerCard.appendChild(icone)
-            
+            footerCard.appendChild(nuberLikes)
+
             carderMedia.appendChild(images)
             carderMedia.appendChild(footerCard) 
-            carousel.appendChild(carderMedia) 
+             
         }
 
         //les medias vidéos
@@ -41,34 +49,40 @@ function mediaTemplate(data, namePhotographer){
         
         const videos = document.createElement('video');
             videos.setAttribute("src", videoMedia)
+            carderMedia.className = "media-photographer"
             videos.setAttribute("controls", true)
 
         const titre = document.createElement('p')
             titre.textContent = title
             titre.style.color = '#901C1C'
 
-        const icone = document.createElement('i')
-            icone.textContent = likes
+        const icone = document.createElement('i')   
             icone.className = "fa-solid fa-heart"
             icone.style.color = '#901C1C'
 
-        const footerCard = document.createElement('span')
+        const nuberLikes = document.createElement('span')
+            nuberLikes.textContent = likes
+            nuberLikes.style.color = '#901C1C'
+
+        const footerCard = document.createElement('div')
             footerCard.appendChild(titre)
-            footerCard.appendChild(icone)    
+            footerCard.appendChild(icone)
+            footerCard.appendChild(nuberLikes)    
         
         carderMedia.appendChild(videos)
         carderMedia.appendChild(footerCard) 
-        carousel.appendChild(carderMedia)
+        
         }
         
 
-       return carousel
+       return carderMedia
     }
 
-
-    function getVideoDOM(){
-
-    }
+        const totalLikes = document.querySelector('.totalLikes')
+              totalLikes.innerText = (likes)
+              
+           
+                 
     
-    return { photographerId, image, getImageDOM, getVideoDOM, }
+    return { photographerId, image, getImageDOM}
 }

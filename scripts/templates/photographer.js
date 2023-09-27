@@ -84,9 +84,9 @@ function photographerTemplate(data) {
         
         return(main)
     }
+    
 
-
-    return { name, picture, getUserCardDOM, getPageDOM, }
+    return { name, picture, getUserCardDOM, getPageDOM, price}
 
     
 }
