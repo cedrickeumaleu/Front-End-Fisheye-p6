@@ -15,6 +15,8 @@ async function getPagePhotographers() {
 //resultat:en fontion d'un id, renvoie un objet avec les info du photographe
 async function getPhotographerById(id){
     const photographersData = await getPagePhotographers()
+
+    // profil pour chaque photographe
     let findPhotographer;
     photographersData.photographers.forEach((photographer) =>{
         
@@ -29,30 +31,33 @@ async function getPhotographerById(id){
 async function init(){
     const params = (new URL(document.location)).searchParams;
     const id = params.get('id'); 
-   const photographer =  await getPhotographerById(id)
+    const photographer =  await getPhotographerById(id)
    displayData(photographer)
    
 }
 init()
 
 
-//récupération du travail de chaque photographes
+//récupération du travail de chaque photographes et affichage
 async function displayData(photographer) {
     // recupération du header photographers.html
     const photographersData = await getPagePhotographers()
     const photographerModel = photographerTemplate(photographer);
           photographerModel.getPageDOM(); // affichage de la modale photographer
+
     // media de chaque photographe en fonction de son Id
     const media = await getMediasByPhotographerId(photographer.id)
     
     const photographerName = photographer.name.split(" ")[0]//methode pour séparer le nom du prenom 
     const section = document.createElement("section")
+    section.className = ('section-page')
     const main = document.querySelector('main')
-    //  DOM d'affichage de statistique en bas de page
+
+    //  DOM d'affichage du tarif jourlier de chaque photographe
     const dailyPrice = document.querySelector('.dailyPrice')
     dailyPrice.innerText = (photographer.price + '€/Jour')
  
-    // boucle forEach pour récupéré les médias et autre dans le Templete
+    // boucle forEach pour récupéré les médias dans le Templete
     media.forEach((media,index) => {
         const mediaModel = mediaTemplate(media, photographerName, index)
 
@@ -83,17 +88,24 @@ async function displayData(photographer) {
   function carousel(){
       // gestion d'ouverture de la lightbox (carousel) DOM
       const modalLightbox = document.getElementById('lightbox')
-      const openCarousel = document.querySelectorAll('.media-photographer')
+      const mediaPhotographer = document.querySelectorAll('.media-photographer')
       const container = document.getElementById('container')
       const flecheG = document.querySelector('.fa-solid.fa-chevron-left')
       const flecheD = document.querySelector('.fa-solid.fa-chevron-right')
     
       //ouverture de la modale
-      openCarousel.forEach(image =>{
-          image.addEventListener('click', () =>{
+      mediaPhotographer.forEach(image =>{
+          image.addEventListener('click', (event) =>{
+            if(!event.target.classList.contains('fa-heart')){
               modalLightbox.style.display='block'//affichage de la modale
               container.innerHTML= "" // vidé le container HTML
-              container.appendChild(image.cloneNode(true))//affichage de limage et le cloné
+              const imageLightBox = image.cloneNode(true)
+              // const imagealt = imageLightBox.getAttribute("alt")
+              // imageLightBox.setAttribute("alt", imagealt.split(", closeup view")[0])
+              
+              container.appendChild(imageLightBox)//affichage de limage et le cloné
+            }
+             
                 
           })         
       })
@@ -109,7 +121,7 @@ async function displayData(photographer) {
               }
               
               container.innerHTML= ""
-              const listeMedia = [...openCarousel] 
+              const listeMedia = [...mediaPhotographer] 
               
               container.appendChild(listeMedia[numberImage].cloneNode(true))
       })
@@ -125,7 +137,7 @@ async function displayData(photographer) {
               }
     
               container.innerHTML= ""
-              const listeMedia = [...openCarousel] 
+              const listeMedia = [...mediaPhotographer] 
               
               container.appendChild(listeMedia[numberImage].cloneNode(true))
       })
@@ -134,7 +146,7 @@ async function displayData(photographer) {
     
 
   // methode de trie pour afficher les médias
-  // selecte d'option dans le champ de trie
+  // selection d'option dans le champ de trie
   const sectionTrie = document.getElementById('trie')
      
   //au clic on change d'option et affiche les valeurs de l'option choisi
@@ -185,7 +197,7 @@ async function displayData(photographer) {
     
             // section d'affichage du contenu de chaque photographe
             const imageSection = mediaModel.getImageDOM();
-            
+           
             section.appendChild(imageSection.cloneNode(true))
             main.appendChild(section)
           
@@ -194,15 +206,45 @@ async function displayData(photographer) {
     carousel()
   })
 
-  //gestion des likes sur chaque article
-  const mediaId = document.getElementById('media-id') 
-  const likeElement = document.querySelector('.fa-heart')
-    likeElement.addEventListener('click',() =>{
-    
-      
+  //gestion des likes sur chaque article 
+    const likeElement = document.querySelectorAll('.fa-heart')
+  
+    likeElement.forEach((like) =>{
+      like.addEventListener('click',(event) =>{
+        const mediaPhotographer = event.target.closest('.media-photographer')
+        const dataId = mediaPhotographer.getAttribute('data-id')
+        if(!media[dataId]['isLiked']){
+          media[dataId].likes = parseInt(media[dataId].likes) + 1
+          media[dataId]['isLiked'] = true
+          const nuberLikes = mediaPhotographer.querySelector('.nuber-likes')
+          nuberLikes.innerText = media[dataId].likes
+          
+        }
+
+      })
     })
 
-        
+  //total des likes d'un photographe
+  const totalLikes = document.querySelector('.totalLikes')
+  let sommeLikes = 0;
+    media.forEach((media) =>{
+      sommeLikes = sommeLikes + media.likes
+      
+    })
+    totalLikes.innerHTML = sommeLikes
+    
+    const barStat = document.querySelector('.bar-stat')
+    const icones = document.createElement('span')   
+    icones.className = "fa-solid fa-heart"
+    icones.style.color = 'black'
+
+    const divStat = document.createElement('div')
+    divStat.className = "bloc-stat"
+    divStat.appendChild(icones)
+    divStat.prepend(totalLikes)
+
+    barStat.prepend(divStat)
+      
 }
 
 

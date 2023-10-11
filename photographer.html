@@ -13,11 +13,14 @@
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <a href="/index.html">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+    </a>
+    
   </header>
   <main id="main">
     <div class="photographe-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" onclick="displayModal()" aria-label="Contatc Me">Contactez-moi</button>
     </div>
     <!--option de trie-->
     <div class="contene-trie">
@@ -39,7 +42,7 @@
     <div class="modal" role="dialog">
       <header>
         <h2>Contactez-moi</h2>
-        <img class="close" src="assets/icons/close.svg" onclick="closeModal()" />
+        <img class="close" src="assets/icons/close.svg" onclick="closeModal()" alt="Close Contact form" />
       </header>
       <form class="contact" action="photographer.html" method="POST" id="myForm">
         <div>
@@ -52,21 +55,19 @@
           <label for="message">Massage</label>
           <textarea name="message" id="message" cols="100" rows="10"></textarea>
         </div>
-        <button class="contact_button" type="submit">Envoyer</button>
+        <button class="contact_button" type="submit" aria-label="send">Envoyer</button>
       </form>
     </div>
   </div>
 
   <!--lightbox pour le carousel des image-->
-  <div id="lightbox">
+  <div id="lightbox" aria-label="image closeup view">
     <header>
-      <i id="closeDialog" class="fa-solid fa-xmark"></i>
+      <i id="closeDialog" class="fa-solid fa-xmark" aria-label="Close dialog"></i>
     </header>
-    <div id="container">
-
-    </div>
-    <i class="fa-solid fa-chevron-left"></i>
-    <i class="fa-solid fa-chevron-right"></i>
+    <div id="container"></div>
+    <i class="fa-solid fa-chevron-left" aria-label="previous image"></i>
+    <i class="fa-solid fa-chevron-right" aria-label="Next image"></i>
 
   </div>
   <script src="scripts/templates/photographer.js"></script>

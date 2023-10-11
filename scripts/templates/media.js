@@ -19,6 +19,7 @@ function mediaTemplate(data, namePhotographer, index){
             images.setAttribute("src", imageMedia)
             carderMedia.className = "media-photographer"
             images.className = "photo"
+            images.setAttribute("alt", title + ", closeup view")
     
             const titre = document.createElement('p')
             titre.textContent = title
@@ -28,8 +29,10 @@ function mediaTemplate(data, namePhotographer, index){
             const icone = document.createElement('i')
             icone.className = "fa-solid fa-heart"
             icone.style.color = '#901C1C'
+            icone.setAttribute("aria-label", "likes")
             
             const nuberLikes = document.createElement('span')
+            nuberLikes.className = "nuber-likes"
             nuberLikes.textContent = likes
             nuberLikes.style.color = '#901C1C'
         
@@ -78,11 +81,7 @@ function mediaTemplate(data, namePhotographer, index){
        return carderMedia
     }
 
-        const totalLikes = document.querySelector('.totalLikes')
-              totalLikes.innerText = (likes)
-              
-           
-                 
-    
+       
+                
     return { photographerId, image, getImageDOM}
 }

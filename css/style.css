@@ -18,10 +18,21 @@ h1 {
     color: #901C1C;
     margin-right: 100px;
 }
+h1:focus {
+    color: #901C1C;
+    margin-right: 100px;
+}
 
 .logo {
     height: 50px;
     margin-left: 100px;
+    cursor: pointer;
+}
+.logo:focus {
+    height: 50px;
+    margin-left: 100px;
+    cursor: pointer;
+  
 }
 
 .photographer_section {
@@ -44,6 +55,11 @@ h1 {
 /*style pour le lien qui englobe les articles*/
 .photographer_section a{
     text-decoration: none;
+}
+.photographer_section a:focus{
+    text-decoration: none;
+    outline: none;
+    box-shadow: 2px 3px 7px rgba(0,0,0,2);
 }
 
 .photographer_section article h2 {

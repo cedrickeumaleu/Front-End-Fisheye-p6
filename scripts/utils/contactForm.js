@@ -9,21 +9,25 @@ const body = document.querySelector("body")
 modalBtn.forEach((btn) => btn.addEventListener("click", displayModal));
 function displayModal() {
 	modal.style.display = "block";
-    body.classList.add('modalOpen')
+  
 }
 
 //fermeture de la modal
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal))
 function closeModal() {
     modal.style.display = "none";
-    body.classList.remove('modalOpen')
+    
 }
 
 //création des variables des champs du formulaire
 const firstName = document.getElementById('first');
+      firstName.setAttribute("aria-labelledby3", "Firs name")
 const lastName = document.getElementById('last');
+      lastName.setAttribute("aria-labelledby5", "Last name")
 const myEmail = document.getElementById('email');
+      myEmail.setAttribute("aria-labelledby7", "Email")
 const myMessage = document.getElementById('message');
+      myMessage.setAttribute("aria-labelledby9", "Your message")
 
 // On récupère une référence au formulaire HTML
 const form = document.getElementById("myForm");
