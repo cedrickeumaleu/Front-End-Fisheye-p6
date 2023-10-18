@@ -20,7 +20,7 @@
   </header>
   <main id="main">
     <div class="photographe-header">
-      <button class="contact_button" onclick="displayModal()" aria-label="Contatc Me">Contactez-moi</button>
+      <button class="contact_button" aria-label="Contatc Me">Contactez-moi</button>
     </div>
     <!--option de trie-->
     <div class="contene-trie">
@@ -31,6 +31,7 @@
         <option value="titre">Titre</option>
       </select>
     </div>
+    <!--bar de stat photographe-->
     <div class="bar-stat">
       <span class="totalLikes"></span>
       <span class="dailyPrice"></span>
@@ -39,10 +40,10 @@
 
   <!-- formulaire de la partie contact -->
   <div id="contact_modal">
-    <div class="modal" role="dialog">
+    <div class="modal" role="dialog" aria-labelledby="titleModal">
       <header>
-        <h2>Contactez-moi</h2>
-        <img class="close" src="assets/icons/close.svg" onclick="closeModal()" alt="Close Contact form" />
+        <h2 id="titleModal">Contactez-moi <br> </h2>
+        <img class="close" src="assets/icons/close.svg" alt="Close Contact form" tabindex="0" />
       </header>
       <form class="contact" action="photographer.html" method="POST" id="myForm">
         <div>
@@ -61,7 +62,7 @@
   </div>
 
   <!--lightbox pour le carousel des image-->
-  <div id="lightbox" aria-label="image closeup view">
+  <div id="lightbox" role="dialog" aria-label="image closeup view">
     <header>
       <i id="closeDialog" class="fa-solid fa-xmark" aria-label="Close dialog"></i>
     </header>
@@ -70,11 +71,11 @@
     <i class="fa-solid fa-chevron-right" aria-label="Next image"></i>
 
   </div>
-  <script src="scripts/templates/photographer.js"></script>
-  <script src="scripts/templates/media.js"></script>
-  <script src="scripts/pages/photographer.js"></script>
-  <script src="scripts/utils/contactForm.js"></script>
-  <script src="scripts/utils/carousel.js"></script>
+  <script src="scripts/templates/photographer.js" type="module"></script>
+  <script src="scripts/templates/media.js" type="module"></script>
+  <script src="scripts/pages/photographer.js" type="module"></script>
+  <script src="scripts/utils/contactForm.js" type="module"></script>
+  <script src="scripts/utils/carousel.js" type="module"></script>
 </body>
 
 </html>
