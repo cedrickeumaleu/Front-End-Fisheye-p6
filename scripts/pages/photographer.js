@@ -149,7 +149,7 @@ async function displayData(photographer) {
     });
 
     flecheG.addEventListener("keydown", function (event) {
-      if (event.keyCode === 13) {
+      if (event.keyCode === 37) {
         event.stopImmediatePropagation();
         let numberImage = Number(
           container.querySelector(".media-photographer").getAttribute("data-id")
@@ -188,7 +188,7 @@ async function displayData(photographer) {
     });
 
     flecheD.addEventListener("keydown", function (event) {
-      if (event.keyCode === 13) {
+      if (event.keyCode === 39) {
         event.stopImmediatePropagation();
         let numberImage = Number(
           container.querySelector(".media-photographer").getAttribute("data-id")
