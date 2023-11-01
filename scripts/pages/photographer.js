@@ -142,7 +142,7 @@ async function displayData(photographer) {
       }
 
       container.innerHTML = "";
-      console.log(listeMedia);
+      console.log(numberImage);
       mediaPhotographer = document.querySelectorAll(".media-photographer");
       const listeMedia = [...mediaPhotographer];
       container.appendChild(listeMedia[numberImage].cloneNode(true));
@@ -161,7 +161,7 @@ async function displayData(photographer) {
         }
 
         container.innerHTML = "";
-        console.log(listeMedia);
+        console.log(numberImage);
         mediaPhotographer = document.querySelectorAll(".media-photographer");
         const listeMedia = [...mediaPhotographer];
         container.appendChild(listeMedia[numberImage].cloneNode(true));
