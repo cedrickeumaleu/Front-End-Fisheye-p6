@@ -1,0 +1,84 @@
+@import url("photographer.css");
+
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+h1 {
+    color: #901C1C;
+    margin-right: 100px;
+}
+h1:focus {
+    color: #901C1C;
+    margin-right: 100px;
+}
+
+.logo {
+    height: 50px;
+    margin-left: 100px;
+    cursor: pointer;
+}
+.logo:focus {
+    height: 50px;
+    margin-left: 100px;
+    cursor: pointer;
+  
+}
+
+.photographer_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
+}
+
+/* style pour le bloc article*/
+.photographer_section article {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+/*style pour le lien qui englobe les articles*/
+.photographer_section a{
+    text-decoration: none;
+}
+.photographer_section a:focus{
+    text-decoration: none;
+    outline: none;
+    box-shadow: 2px 3px 7px rgba(0,0,0,2);
+}
+
+.photographer_section article h2 {
+    color: #D3573C;
+    font-size: 36px;
+    margin: 0;
+}
+
+.photographer_section article p {
+    color: #D3573C;
+    font-size: 14px;
+    margin:unset;
+}
+
+/*style css photo de profil*/
+.photographer_section article img {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    object-fit: cover;
+}
